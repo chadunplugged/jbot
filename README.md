@@ -28,7 +28,7 @@ can make your bot live right away.
 
 **Running your SlackBot is just 4 easy steps:**
   
-1. Clone this project `$ git clone git@github.com:rampatra/jbot.git`.  
+1. Clone this project `$ git clone https://github.com/rampatra/jbot.git`.  
 2. [Create a slack bot](https://my.slack.com/services/new/bot) and get your slack token.  
 3. Paste the token in [application.properties](/jbot-example/src/main/resources/application.properties) file.  
 4. Run the example application by running `JBotApplication` in your IDE or via commandline: 
@@ -41,7 +41,7 @@ can make your bot live right away.
 
 You can now start talking with your bot ;)
 
-Read the detailed [Slack documentation](/docs/slack/README-Slack-JBot-4.0.0.md) to learn more.
+Read the detailed [Slack documentation](https://blog.rampatra.com/how-to-make-a-slack-bot-in-java) to learn more.
 
 ## JBot for Facebook
 
@@ -69,7 +69,7 @@ You can now start messaging your bot by going to the facebook page and clicking 
 _If you're too lazy to start now and just want to play around, you can try `jbot-example` by visiting 
 [JBot facebook page](https://www.facebook.com/jbotframework/) and clicking on the "Send Message" button._
 
-Read the detailed [Facebook documentation](/docs/facebook/README-Facebook-JBot-4.0.0.md) to learn more.
+Read the detailed [Facebook documentation](https://blog.rampatra.com/how-to-make-facebook-bots-in-java) to learn more.
 
 ## Contributors
 
