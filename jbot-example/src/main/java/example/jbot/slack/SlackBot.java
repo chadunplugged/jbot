@@ -5,6 +5,7 @@ import me.ramswaroop.jbot.core.common.EventType;
 import me.ramswaroop.jbot.core.common.JBot;
 import me.ramswaroop.jbot.core.slack.Bot;
 import me.ramswaroop.jbot.core.slack.models.Event;
+import me.ramswaroop.jbot.core.slack.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,7 +56,18 @@ public class SlackBot extends Bot {
      */
     @Controller(events = {EventType.DIRECT_MENTION, EventType.DIRECT_MESSAGE})
     public void onReceiveDM(WebSocketSession session, Event event) {
-        reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName());
+
+        //This is always null.
+        //User user = event.getUser();
+
+        if(event.getText().toLowerCase().contains("john"))
+            reply(session, event, "John? There was nothing wrong with that name. At least until that no talent ass clown started winning grammies.");
+        else if(event.getText().toLowerCase().contains("chad"))
+            reply(session, event, "Ehh... that Chad guy.. I dunno. Can't really comment. ");
+        else if(event.getText().toLowerCase().contains("erika"))
+            reply(session, event, "Erika: just da best. Thank her for dzaddies.");
+        else
+            reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName() + " I'll get back to you about that later when someone gives me some brains.");
     }
 
     /**
