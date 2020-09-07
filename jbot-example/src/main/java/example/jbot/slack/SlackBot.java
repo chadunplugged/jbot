@@ -120,12 +120,30 @@ public class SlackBot extends Bot {
      * @param session
      * @param event
      */
+    @Controller(events = EventType.MESSAGE)
+    public void onReceiveMessage(WebSocketSession session, Event event) {
+        if(event.getText().toLowerCase().contains("john"))
+            reply(session, event, johnResponse());
+
+    }
+
+    /**
+     * Invoked when bot receives an event of type message with text satisfying
+     * the pattern {@code ([a-z ]{2})(\d+)([a-z ]{2})}. For example,
+     * messages like "ab12xy" or "ab2bc" etc will invoke this method.
+     *
+     * @param session
+     * @param event
+     */
     @Controller(events = EventType.MESSAGE, pattern = "^([a-z ]{2})(\\d+)([a-z ]{2})$")
     public void onReceiveMessage(WebSocketSession session, Event event, Matcher matcher) {
-        reply(session, event, "First group: " + matcher.group(0) + "\n" +
-                "Second group: " + matcher.group(1) + "\n" +
-                "Third group: " + matcher.group(2) + "\n" +
-                "Fourth group: " + matcher.group(3));
+        if(event.getText().toLowerCase().contains("john"))
+            reply(session, event, johnResponse());
+
+//        reply(session, event, "First group: " + matcher.group(0) + "\n" +
+//                "Second group: " + matcher.group(1) + "\n" +
+//                "Third group: " + matcher.group(2) + "\n" +
+//                "Fourth group: " + matcher.group(3));
     }
 
     /**
