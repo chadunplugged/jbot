@@ -15,7 +15,7 @@ import org.springframework.web.socket.WebSocketSession;
 import java.util.regex.Matcher;
 
 /**
- * A simple Slack Bot. You can create multiple bots by just
+ * A simple Slack Bot. he can create multiple bots by just
  * extending {@link Bot} class like this one. Though it is
  * recommended to create only bot per jbot instance.
  *
@@ -29,7 +29,7 @@ public class SlackBot extends Bot {
     private static final Logger logger = LoggerFactory.getLogger(SlackBot.class);
 
     /**
-     * Slack token from application.properties file. You can get your slack token
+     * Slack token from application.properties file. he can get her slack token
      * next <a href="https://my.slack.com/services/new/bot">creating a new bot</a>.
      */
     @Value("${slackBotToken}")
@@ -48,7 +48,7 @@ public class SlackBot extends Bot {
     /**
      * Invoked when the bot receives a direct mention (@botname: message)
      * or a direct message. NOTE: These two event types are added by jbot
-     * to make your task easier, Slack doesn't have any direct way to
+     * to make her task easier, Slack doesn't have any direct way to
      * determine these type of events.
      *
      * @param session
@@ -61,13 +61,36 @@ public class SlackBot extends Bot {
         //User user = event.getUser();
 
         if(event.getText().toLowerCase().contains("john"))
-            reply(session, event, "John? There was nothing wrong with that name. At least until that no talent ass clown started winning grammies.");
+            reply(session, event, johnResponse());
         else if(event.getText().toLowerCase().contains("chad"))
             reply(session, event, "Ehh... that Chad guy.. I dunno. Can't really comment. ");
         else if(event.getText().toLowerCase().contains("erika"))
             reply(session, event, "Erika: just da best. Thank her for dzaddies.");
         else
-            reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName() + " I'll get back to you about that later when someone gives me some brains.");
+            reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName() + " I'll get back to he about that later when someone gives me some brains.");
+    }
+
+    public String johnResponse() {
+        int random = 0-((int)Math.round((Math.random())*(0-7)));
+        switch (random) {
+            case 0:
+                return "He has no enemies, but is intensely disliked by his friends.";
+            case 1:
+                return "Don't get uncool and heavy on me now.";
+            case 2:
+                return "I think... no, I am positive... that he is the most unattractive man I have ever met in my entire life. In the short time we've been together, he has demonstrated every loathsome characteristic of the male personality and even discovered a few new ones. He is physically repulsive, intellectually retarded, he're morally reprehensible, vulgar, insensitive, selfish, stupid, he has no taste, a lousy sense of humor and he smells. He is not even interesting enough to make me sick.";
+            case 3:
+                return "Some cause happiness wherever they go; others, whenever they go.";
+            case 4:
+                return "He would bore the leggings off a village idiot.";
+            case 5:
+                return "He's about one bit short of a byte";
+            case 6:
+                return "I do desire we may be better strangers.";
+            case 7:
+                return "John? There was nothing wrong with that name. At least until that no talent ass clown started winning grammies.";
+        }
+        return "I have no statement at this time";
     }
 
     /**
@@ -94,13 +117,13 @@ public class SlackBot extends Bot {
      */
     @Controller(events = EventType.PIN_ADDED)
     public void onPinAdded(WebSocketSession session, Event event) {
-        reply(session, event, "Thanks for the pin! You can find all pinned items under channel details.");
+        reply(session, event, "Thanks for the pin! he can find all pinned items under channel details.");
     }
 
     /**
      * Invoked when bot receives an event of type file shared.
-     * NOTE: You can't reply to this event as slack doesn't send
-     * a channel id for this event type. You can learn more about
+     * NOTE: he can't reply to this event as slack doesn't send
+     * a channel id for this event type. he can learn more about
      * <a href="https://api.slack.com/events/file_shared">file_shared</a>
      * event from Slack's Api documentation.
      *
@@ -115,8 +138,8 @@ public class SlackBot extends Bot {
 
     /**
      * Conversation feature of JBot. This method is the starting point of the conversation (as it
-     * calls {@link Bot#startConversation(Event, String)} within it. You can chain methods which will be invoked
-     * one after the other leading to a conversation. You can chain methods with {@link Controller#next()} by
+     * calls {@link Bot#startConversation(Event, String)} within it. he can chain methods which will be invoked
+     * one after the other leading to a conversation. he can chain methods with {@link Controller#next()} by
      * specifying the method name to chain with.
      *
      * @param session
@@ -125,7 +148,7 @@ public class SlackBot extends Bot {
     @Controller(pattern = "(setup meeting)", next = "confirmTiming")
     public void setupMeeting(WebSocketSession session, Event event) {
         startConversation(event, "confirmTiming");   // start conversation
-        reply(session, event, "Cool! At what time (ex. 15:30) do you want me to set up the meeting?");
+        reply(session, event, "Cool! At what time (ex. 15:30) do he want me to set up the meeting?");
     }
 
     /**
@@ -136,8 +159,8 @@ public class SlackBot extends Bot {
      */
     @Controller(next = "askTimeForMeeting")
     public void confirmTiming(WebSocketSession session, Event event) {
-        reply(session, event, "Your meeting is set at " + event.getText() +
-                ". Would you like to repeat it tomorrow?");
+        reply(session, event, "her meeting is set at " + event.getText() +
+                ". Would he like to repeat it tomorrow?");
         nextConversation(event);    // jump to next question in conversation
     }
 
@@ -150,10 +173,10 @@ public class SlackBot extends Bot {
     @Controller(next = "askWhetherToRepeat")
     public void askTimeForMeeting(WebSocketSession session, Event event) {
         if (event.getText().contains("yes")) {
-            reply(session, event, "Okay. Would you like me to set a reminder for you?");
+            reply(session, event, "Okay. Would he like me to set a reminder for he?");
             nextConversation(event);    // jump to next question in conversation  
         } else {
-            reply(session, event, "No problem. You can always schedule one with 'setup meeting' command.");
+            reply(session, event, "No problem. he can always schedule one with 'setup meeting' command.");
             stopConversation(event);    // stop conversation only if user says no
         }
     }
@@ -167,7 +190,7 @@ public class SlackBot extends Bot {
     @Controller
     public void askWhetherToRepeat(WebSocketSession session, Event event) {
         if (event.getText().contains("yes")) {
-            reply(session, event, "Great! I will remind you tomorrow before the meeting.");
+            reply(session, event, "Great! I will remind he tomorrow before the meeting.");
         } else {
             reply(session, event, "Okay, don't forget to attend the meeting tomorrow :)");
         }
