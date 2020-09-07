@@ -71,7 +71,7 @@ public class SlackBot extends Bot {
     }
 
     public String johnResponse() {
-        int random = 0-((int)Math.round((Math.random())*(0-7)));
+        int random = 0-((int)Math.round((Math.random())*(0-16)));
         switch (random) {
             case 0:
                 return "He has no enemies, but is intensely disliked by his friends.";
@@ -89,6 +89,25 @@ public class SlackBot extends Bot {
                 return "I do desire we may be better strangers.";
             case 7:
                 return "John? There was nothing wrong with that name. At least until that no talent ass clown started winning grammies.";
+            case 8:
+                return "He is so mercifully free of the ravages of intelligence.";
+            case 9:
+                return "You're not a complete idiot… some parts are missing.";
+            case 10:
+                return "Bubble-headed booby.";
+            case 11:
+                return "It gives me a headache just trying to think down to his level.";
+            case 12:
+                return "I think he has a problem with his brain being missing.";
+            case 13:
+                return "He has a plentiful lack of wit.";
+            case 14:
+                return "Four of his five wits went halting off, and now is the whole man governed with one.";
+            case 15:
+                return "John? Well, there are some people you like immediately, some whom you think you might learn to like in the fullness of time, and some that you simply want to push away from you with a sharp stick.";
+            case 16:
+                return "He's about as effective as a cat flap in an elephant house.";
+
         }
         return "I have no statement at this time";
     }
