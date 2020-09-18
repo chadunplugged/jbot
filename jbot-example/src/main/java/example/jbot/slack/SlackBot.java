@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.socket.WebSocketSession;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 
 /**
@@ -27,6 +28,8 @@ import java.util.regex.Matcher;
 public class SlackBot extends Bot {
 
     private static final Logger logger = LoggerFactory.getLogger(SlackBot.class);
+
+    private ArrayList<String> bbcomResponses;
 
     /**
      * Slack token from application.properties file. he can get her slack token
@@ -66,8 +69,47 @@ public class SlackBot extends Bot {
             reply(session, event, "Ehh... that Chad guy.. I dunno. Can't really comment. ");
         else if(event.getText().toLowerCase().contains("erika"))
             reply(session, event, "Erika: just da best. Thank her for dzaddies.");
+        else if(event.getText().toLowerCase().contains("bbcom")) {
+            int random = 0 - ((int) Math.round((Math.random()) * (0 - 2)));
+            if (random > 0) {
+                reply(session, event, bbcomResponse());
+            }
+        }
         else
             reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName() + " I'll get back to he about that later when someone gives me some brains.");
+    }
+
+    public String bbcomResponse() {
+        if(bbcomResponses.size()<=0) {
+            fillBBcomResponses();
+        }
+
+        int random = 0-((int)Math.round((Math.random())*(0-bbcomResponses.size())));
+        return bbcomResponses.get(random);
+    }
+
+    private void fillBBcomResponses() {
+        bbcomResponses = new ArrayList<>();
+        bbcomResponses.add("Welcome to your first day in engineering at the new office! Your desk is ..   run for your life it's a poonami!");
+        bbcomResponses.add("Due to an unfortunate pooping in the towels incident, we can no longer have a towel service in the gym.");
+        bbcomResponses.add("Naw, they got thrown out during the remodel.");
+        bbcomResponses.add("BRB microwaving some week old fish for lunch, bro I'm starved!");
+        bbcomResponses.add("u mad bro?");
+        bbcomResponses.add("come at me!");
+        bbcomResponses.add("Oh man.. if you're outta protein you can go get some from the pile under the empty dispenser's in the gym.");
+        bbcomResponses.add("BRB, the sun is etching little circles in my retina on my screen.");
+        bbcomResponses.add("That smell? Oh they are doing taste tests in the board room.");
+        bbcomResponses.add("Those gucci flip flops though. ");
+        bbcomResponses.add(":bertstare:");
+        bbcomResponses.add("Just about time to play the 5 oclock music!");
+        bbcomResponses.add("Sorry we don't work on computers over here");
+        bbcomResponses.add("We doing the ghost pepper or the carolina reaper this time?");
+        bbcomResponses.add("I coughed and it came back alive inside of me.");
+        bbcomResponses.add("You can't lay a proper foundation for a big structure on a garbage dump.");
+        bbcomResponses.add("Who shops with their pants on?");
+        bbcomResponses.add("RIP the Dream Saloon..");
+
+
     }
 
     public String johnResponse() {
