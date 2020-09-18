@@ -69,18 +69,12 @@ public class SlackBot extends Bot {
             reply(session, event, "Ehh... that Chad guy.. I dunno. Can't really comment. ");
         else if(event.getText().toLowerCase().contains("erika"))
             reply(session, event, "Erika: just da best. Thank her for dzaddies.");
-        else if(event.getText().toLowerCase().contains("bbcom")) {
-            int random = 0 - ((int) Math.round((Math.random()) * (0 - 2)));
-            if (random > 0) {
-                reply(session, event, bbcomResponse());
-            }
-        }
         else
             reply(session, event, "Hi, I am " + slackService.getCurrentUser().getName() + " I'll get back to he about that later when someone gives me some brains.");
     }
 
     public String bbcomResponse() {
-        if(bbcomResponses.size()<=0) {
+        if(bbcomResponses==null || bbcomResponses.size()<=0) {
             fillBBcomResponses();
         }
 
@@ -166,7 +160,8 @@ public class SlackBot extends Bot {
     public void onReceiveMessage(WebSocketSession session, Event event) {
         if(event.getText().toLowerCase().contains("john"))
             reply(session, event, johnResponse());
-
+        if(event.getText().toLowerCase().contains("bbcom") || event.getText().toLowerCase().contains("bodybuilding"))
+            reply(session, event, bbcomResponse());
     }
 
     /**
