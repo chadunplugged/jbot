@@ -158,7 +158,7 @@ public class SlackBot extends Bot {
      */
     @Controller(events = EventType.MESSAGE)
     public void onReceiveMessage(WebSocketSession session, Event event) {
-        if(event.getText().toLowerCase().contains("john"))
+        if(event.getText().toLowerCase().contains("john") || event.getText().toLowerCase().contains("jon"))
             reply(session, event, johnResponse());
         if(event.getText().toLowerCase().contains("bbcom") || event.getText().toLowerCase().contains("bodybuilding"))
             reply(session, event, bbcomResponse());
